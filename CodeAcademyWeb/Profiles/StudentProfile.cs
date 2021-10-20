@@ -17,11 +17,11 @@ namespace CodeAcademyWeb.Profiles
 		{
 			CreateMap<Student, StudentDTO>()
 				.ForMember(dto => dto.DateOfBirth, opt => opt.MapFrom(student => student.DateOfBirth.ToString("yyyy/MM/dd", null)))
-				.ForMember(dto => dto.Surname, opt => opt.MapFrom(student => student.Lastname));
+				.ForMember(dto => dto.Lastname, opt => opt.MapFrom(student => student.Lastname));
 
 			CreateMap<StudentDTO, Student>()
 				.ForMember(student => student.DateOfBirth, opt => opt.MapFrom(dto => Parse(dto.DateOfBirth)))
-				.ForMember(student => student.Lastname, opt =>opt.MapFrom(dto => dto.Surname));
+				.ForMember(student => student.Lastname, opt =>opt.MapFrom(dto => dto.Lastname));
 			CreateMap<EnrollData, EnrollDataDTO>();
 			CreateMap<EnrollDataDTO, EnrollData>();
 			CreateMap<Enrollment, EnrollmentDTO>();
