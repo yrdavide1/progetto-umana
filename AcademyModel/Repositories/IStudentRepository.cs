@@ -10,7 +10,6 @@ namespace AcademyModel.Repositories
 	public interface IStudentRepository : ICrudRepository<Student, long>
 	{
 		IEnumerable<Student> FindByLastnameLike(string lastnameLike);
-		Student FindStudentWithCoursesById(long id);
 		IEnumerable<Student> FindStudentByCompetence(long idSkill, Level? level);
 	}
 

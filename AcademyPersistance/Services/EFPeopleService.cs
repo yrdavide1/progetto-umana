@@ -44,7 +44,7 @@ namespace AcademyEFPersistance.Services
 		}
 		public Student GetStudentById(long id)
 		{
-			return studentRepo.FindStudentWithCoursesById(id);
+			return studentRepo.FindById(id);
 		}
 		public void UpdateStudent(Student s)
 		{

@@ -35,10 +35,5 @@ namespace AcademyEFPersistance.Repository {
 			}
 			return students;
 		}
-
-		public Student FindStudentWithCoursesById(long id)
-		{
-			return null;
-		}
 	}
 }

@@ -36,6 +36,14 @@ namespace CodeAcademyWeb.Controllers
 			var studentDTOs = mapper.Map<IEnumerable<StudentDTO>>(students);
 			return Ok(studentDTOs);
 		}
+		[HttpGet]
+		[Route("{id}")]
+		public IActionResult GetById(long id)
+        {
+			var singleStudentsDetails = service.GetStudentById(id);
+			var studentDTO = mapper.Map<StudentDTO>(singleStudentsDetails);
+			return Ok(studentDTO);
+        }
 		[HttpPost]
 		public IActionResult Create(StudentDTO s)
 		{
