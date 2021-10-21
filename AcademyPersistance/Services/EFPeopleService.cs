@@ -46,10 +46,11 @@ namespace AcademyEFPersistance.Services
 		{
 			return studentRepo.FindById(id);
 		}
-		public void UpdateStudent(Student s)
+		public Student UpdateStudent(Student s)
 		{
 			studentRepo.Update(s);
 			ctx.SaveChanges();
+			return s;
 		}
 		public void DeleteStudent(Student s)
 		{

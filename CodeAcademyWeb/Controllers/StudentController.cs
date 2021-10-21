@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors;
 
 namespace CodeAcademyWeb.Controllers
 {
@@ -65,5 +66,13 @@ namespace CodeAcademyWeb.Controllers
 			var enrDTO = mapper.Map<EnrollmentDTO>(enr);
 			return Created($"/api/student/{data.IdStudent}/enrollments/{enr.Id}", enrDTO);
 		}
+		[HttpPut]
+		public IActionResult Update(StudentDTO s)
+        {
+			var student = mapper.Map<Student>(s);
+			student = service.UpdateStudent(student);
+			var resDTO = mapper.Map<StudentDTO>(student);
+			return Created($"/api/student/{resDTO.Id}", resDTO);
+        }
 	}
 }
