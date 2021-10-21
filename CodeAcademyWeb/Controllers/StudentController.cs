@@ -37,6 +37,22 @@ namespace CodeAcademyWeb.Controllers
 			var studentDTOs = mapper.Map<IEnumerable<StudentDTO>>(students);
 			return Ok(studentDTOs);
 		}
+
+		[HttpGet]
+		[Route("lastname/{lastname}")]
+		public IActionResult GetStudentsByLastname(string lastname)
+        {
+			var students = service.GetAllStudents();
+			var studentsDTOs = mapper.Map<IEnumerable<StudentDTO>>(students);
+			var filteredStudents = new List<StudentDTO>();
+			foreach(var student in studentsDTOs)
+            {
+				if(student.Lastname == lastname) filteredStudents.Add(student);
+            }
+			if (filteredStudents.Count > 0) return Ok(filteredStudents);
+			else return NotFound("No students found");
+        }
+
 		[HttpGet]
 		[Route("{id}")]
 		public IActionResult GetById(long id)
