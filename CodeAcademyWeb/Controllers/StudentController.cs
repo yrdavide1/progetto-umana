@@ -67,12 +67,21 @@ namespace CodeAcademyWeb.Controllers
 			return Created($"/api/student/{data.IdStudent}/enrollments/{enr.Id}", enrDTO);
 		}
 		[HttpPut]
-		public IActionResult Update(StudentDTO s)
+		public IActionResult UpdateStudent(StudentDTO s)
         {
 			var student = mapper.Map<Student>(s);
 			student = service.UpdateStudent(student);
 			var resDTO = mapper.Map<StudentDTO>(student);
 			return Created($"/api/student/{resDTO.Id}", resDTO);
+        }
+		[HttpDelete]
+		[Route("{id}")]
+		public IActionResult DeleteStudent(long id)
+        {
+			var student = service.GetStudentById(id);
+			service.DeleteStudent(student);
+			var resDTO = mapper.Map<StudentDTO>(student);
+			return Ok(resDTO);
         }
 	}
 }
