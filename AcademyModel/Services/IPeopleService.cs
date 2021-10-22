@@ -18,6 +18,8 @@ namespace AcademyModel.Services
 		void DeleteStudent(Student s);
 		Enrollment EnrollSudentToEdition(EnrollData data);
 
+		public IEnumerable<Student> FindStudentsDetailed(StudentSearchInfo info);
+
 		Instructor GetInstructorById(long id);
 		IEnumerable<Instructor> GetInstructors();
 	}

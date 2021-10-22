@@ -1,4 +1,5 @@
-﻿using AcademyModel.Entities;
+﻿using AcademyModel.BuisnessLogic;
+using AcademyModel.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,8 @@ namespace AcademyModel.Repositories
 	{
 		IEnumerable<Student> FindByLastnameLike(string lastnameLike);
 		IEnumerable<Student> FindStudentByCompetence(long idSkill, Level? level);
+
+		public IEnumerable<Student> SearchDetailed(StudentSearchInfo info);
 	}
 
 

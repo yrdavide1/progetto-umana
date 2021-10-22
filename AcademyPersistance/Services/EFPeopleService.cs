@@ -57,6 +57,10 @@ namespace AcademyEFPersistance.Services
 			studentRepo.Delete(s);
 			ctx.SaveChanges();
 		}
+		public IEnumerable<Student> FindStudentsDetailed(StudentSearchInfo info)
+        {
+			return studentRepo.SearchDetailed(info).ToList();
+        }
 		public Enrollment EnrollSudentToEdition(EnrollData data)
 		{
 			var student = studentRepo.FindById(data.IdStudent);

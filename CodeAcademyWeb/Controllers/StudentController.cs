@@ -39,18 +39,16 @@ namespace CodeAcademyWeb.Controllers
 		}
 
 		[HttpGet]
-		[Route("lastname/{lastname}")]
-		public IActionResult GetStudentsByLastname(string lastname)
+		[Route("name")]
+		public IActionResult GetStudentsByFullname([FromQuery] string? fullname)
         {
-			var students = service.GetAllStudents();
-			var studentsDTOs = mapper.Map<IEnumerable<StudentDTO>>(students);
-			var filteredStudents = new List<StudentDTO>();
-			foreach(var student in studentsDTOs)
-            {
-				if(student.Lastname == lastname) filteredStudents.Add(student);
-            }
-			if (filteredStudents.Count > 0) return Ok(filteredStudents);
-			else return NotFound("No students found");
+			StudentSearchInfo searchInfo = new StudentSearchInfo
+			{
+				Fullname = fullname
+			};
+			IEnumerable<Student> students = service.FindStudentsDetailed(searchInfo);
+			IEnumerable<StudentDTO> studentDTOs = mapper.Map<IEnumerable<StudentDTO>>(students);
+			return Ok(studentDTOs);
         }
 
 		[HttpGet]

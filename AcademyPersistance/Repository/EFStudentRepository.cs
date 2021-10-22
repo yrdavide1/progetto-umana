@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AcademyModel;
 using AcademyEFPersistance.EFContext;
+using AcademyModel.BuisnessLogic;
 
 namespace AcademyEFPersistance.Repository {
 	public class EFStudentRepository : EFCrudRepository<Student, long>, IStudentRepository
@@ -35,5 +36,29 @@ namespace AcademyEFPersistance.Repository {
 			}
 			return students;
 		}
+
+		public IEnumerable<Student> SearchDetailed(StudentSearchInfo info)
+        {
+			List<string> splitted = new List<string>();
+			IQueryable<Student> students = ctx.Students;
+			if (info.Fullname != null) splitted = info.Fullname.Split(' ').ToList(); 
+			if(splitted.Count == 2)
+            {
+				if(splitted[0] != null || splitted[1] != null)
+				{
+					if (splitted[0] != null)
+					{
+						students = students.Where(s => s.Firstname == splitted[0] || s.Firstname.Contains(splitted[0]));
+					}
+					else if (splitted[1] != null)
+					{
+						students = students.Where(s => s.Lastname == splitted[1] || s.Lastname.Contains(splitted[1]));
+					}
+				}
+            }
+			else students = students.Where(s => s.Firstname == splitted[0] || s.Firstname.Contains(splitted[0])
+												|| s.Lastname == splitted[0] || s.Lastname.Contains(splitted[0]));
+			return students;
+        } 
 	}
 }
