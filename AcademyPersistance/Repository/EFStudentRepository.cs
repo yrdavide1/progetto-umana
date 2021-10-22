@@ -41,10 +41,10 @@ namespace AcademyEFPersistance.Repository {
         {
 			List<string> splitted = new List<string>();
 			IQueryable<Student> students = ctx.Students;
-			if (info.Fullname != null) splitted = info.Fullname.Split(' ').ToList(); 
-			if(splitted.Count == 2)
-            {
-				if(splitted[0] != null || splitted[1] != null)
+			if (info.Fullname != null) splitted = info.Fullname.Split(' ').ToList();
+			if (splitted.Count == 2)
+			{
+				if (splitted[0] != null || splitted[1] != null)
 				{
 					if (splitted[0] != null)
 					{
@@ -55,9 +55,12 @@ namespace AcademyEFPersistance.Repository {
 						students = students.Where(s => s.Lastname == splitted[1] || s.Lastname.Contains(splitted[1]));
 					}
 				}
-            }
-			else students = students.Where(s => s.Firstname == splitted[0] || s.Firstname.Contains(splitted[0])
+			}
+			else if (splitted.Count == 1)
+			{
+				students = students.Where(s => s.Firstname == splitted[0] || s.Firstname.Contains(splitted[0])
 												|| s.Lastname == splitted[0] || s.Lastname.Contains(splitted[0]));
+			}
 			return students;
         } 
 	}
