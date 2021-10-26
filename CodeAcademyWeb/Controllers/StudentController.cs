@@ -81,6 +81,7 @@ namespace CodeAcademyWeb.Controllers
 			return Created($"/api/student/{data.IdStudent}/enrollments/{enr.Id}", enrDTO);
 		}
 		[HttpPut]
+		[Route("{id}")]
 		public IActionResult UpdateStudent(StudentDTO s)
         {
 			var student = mapper.Map<Student>(s);

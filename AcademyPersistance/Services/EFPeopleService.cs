@@ -4,6 +4,7 @@ using AcademyModel.Entities;
 using AcademyModel.Exceptions;
 using AcademyModel.Repositories;
 using AcademyModel.Services;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
