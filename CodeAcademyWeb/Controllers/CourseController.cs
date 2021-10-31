@@ -38,6 +38,15 @@ namespace CodeAcademyWeb.Controllers
 		}
 
 		[HttpGet]
+		[Route("{title}")]
+		public IActionResult GetByTitle(string title) 
+		{
+			var course = service.FindCourseByTitleLike(title);
+			var courseDTO = mapper.Map<CourseDTO>(course);
+			return Ok(courseDTO);
+		}
+
+		[HttpGet]
 		[Route("areas")]
 		public IActionResult GetAllAreas()
 		{
