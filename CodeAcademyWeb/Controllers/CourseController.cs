@@ -38,11 +38,11 @@ namespace CodeAcademyWeb.Controllers
 		}
 
 		[HttpGet]
-		[Route("{title}")]
-		public IActionResult GetByTitle(string title) 
+		[Route("area/{id}")]
+		public IActionResult GetByAreaId(long id) 
 		{
-			var course = service.FindCourseByTitleLike(title);
-			var courseDTO = mapper.Map<CourseDTO>(course);
+			var course = service.FindCourseByArea(id);
+			var courseDTO = mapper.Map<IEnumerable<CourseDTO>>(course);
 			return Ok(courseDTO);
 		}
 
